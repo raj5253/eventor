@@ -16,15 +16,15 @@ import { CreateUserParams, UpdateUserParams } from '@/types'
 // for that, at each time you encounter an new js object to be created, add the type in that file.
 // No need to overthink.
 
-export const createUser = async (user: CreateUserParams) => {
+export async function createUser(user: CreateUserParams) {
     try {
-        await connectToDatabase();//Ha, ab wahi har bar ka
-        const newUser = User.create(user);
-        return JSON.parse(JSON.stringify(newUser));//stringify converts mongodb obj to string, parse converts string to object
-    } catch (error) {
-        handleError
-    }
+        await connectToDatabase()
 
+        const newUser = await User.create(user)
+        return JSON.parse(JSON.stringify(newUser))
+    } catch (error) {
+        handleError(error)
+    }
 }
 
 export async function getUserById(userId: string) {
