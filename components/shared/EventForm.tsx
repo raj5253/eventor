@@ -53,12 +53,14 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
 
     if(files.length > 0) {
       const uploadedImages = await startUpload(files)
+      // console.log({uploadedImages});
 
       if(!uploadedImages) {
         return
       }
 
       uploadedImageUrl = uploadedImages[0].url
+      
     }
 
     if(type === 'Create') {
@@ -176,10 +178,8 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                         width={24}
                         height={24}
                       />
-
                       <Input placeholder="Event location or Online" {...field} className="input-field" />
                     </div>
-
                   </FormControl>
                   <FormMessage />
                 </FormItem>
